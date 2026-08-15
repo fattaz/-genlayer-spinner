@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenLayer Spinner</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+    }
+
+    .spinner {
+      width: 80px;
+      height: 80px;
+    }
+
+    .spinner-img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner">
+    <img src="gen.png" alt="loading" class="spinner-img">
+  </div>
+</body>
+</html>
