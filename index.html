@@ -3,38 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GenLayer Spinner</title>
+  <title>GenLayer — The Adjudication Layer for the Agentic Economy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --bg: #070707;
+      --fg: #FFFFFF;
+      --fg-muted: #ABABAB;
+      --accent: #110FFF;          /* Kinetic Cobalt */
+      --card: #111111;
+      --border: #1F1F1F;
+    }
+
+    * {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== Header / Logo ========== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: #111;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(7, 7, 7, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--fg);
     }
 
     .spinner {
-      width: 80px;
-      height: 80px;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
     }
 
     .spinner-img {
-      width: 80%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       animation: spin 1.2s linear infinite;
     }
 
     @keyframes spin {
       from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: #e5e5e5;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* soft gradient blooms like the real site */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(227,125,247,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle, rgba(17,15,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 7vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--fg-muted);
+      font-weight: 500;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--fg-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========== Simple bottom section ========== */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .section p {
+      color: var(--fg-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      text-align: center;
+      color: var(--fg-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 20px;
+      }
+      .nav-links {
+        display: none; /* keep it clean on mobile */
+      }
+      .hero {
+        padding-top: 100px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="spinner">
-    <img src="gen.png" alt="loading" class="spinner-img">
-  </div>
+
+  <!-- Header with your spinning logo only -->
+  <header>
+    <a href="#" class="logo-wrap">
+      <div class="spinner">
+        <img src="gen.png" alt="GenLayer" class="spinner-img">
+      </div>
+      <span class="logo-text">GenLayer</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#use-cases">Use cases</a>
+      <a href="https://docs.genlayer.com" target="_blank">Docs</a>
+      <a href="https://portal.genlayer.foundation" class="btn btn-primary" target="_blank">
+        Visit the Portal →
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero (mirrors genlayer.com) -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        The Adjudication Layer
+        <span>For the Agentic Economy.</span>
+      </h1>
+      <p>
+        Decentralized AI consensus that lets AI agents
+        resolve contracts and disputes at machine speed.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://portal.genlayer.foundation" class="btn btn-primary" target="_blank">
+          Become part of the Protocol →
+        </a>
+        <a href="https://docs.genlayer.com" class="btn btn-ghost" target="_blank">
+          Read the docs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal extra section so it doesn’t feel empty -->
+  <section class="section" id="how">
+    <h2>Subjectivity in, a decision everyone trusts out.</h2>
+    <p>
+      A random set of validators, each running a different model, reaches consensus.
+      Intelligent Contracts written in Python can read the web and interpret natural language.
+    </p>
+    <a href="https://genlayer.com/how-it-works" class="btn btn-ghost" target="_blank">
+      See full breakdown →
+    </a>
+  </section>
+
+  <footer>
+    GenLayer — The Adjudication Layer for the Agentic Economy
+  </footer>
+
 </body>
 </html>
